@@ -1,0 +1,47 @@
+ion-row.outside {
+  margin-top: 5vh;
+
+  ion-col {
+    margin-bottom: 3vh;
+    color: var(--ion-color-secondary);
+  }
+}
+
+ion-toolbar {
+  --background: transparent;
+  --border-style: none;
+
+  ion-button {
+    ion-icon {
+      font-size: 3vh;
+    }
+  }
+}
+
+ion-grid.inline {
+  margin: 0;
+  padding: 0;
+
+  ion-row, ion-col {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+ion-item {
+  --background: transparent;
+
+  ion-avatar {
+    height: 9vh;
+    width: 9vh;
+    border: var(--ion-color-primary) 2.5px solid;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: block;
+    margin: auto;
+  }
+
+  p {
+    margin: 0;
+  }
+}

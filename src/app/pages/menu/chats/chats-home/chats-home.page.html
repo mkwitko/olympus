@@ -1,0 +1,37 @@
+<app-my-header title="Conversas" [menu]="false" url="friends"></app-my-header>
+
+<ion-content>
+
+  <ng-container *ngIf="chatClass.myChats">
+    <ng-container *ngIf="chatClass.myChats.length > 0">
+      <ion-list>
+        <ng-container *ngFor="let item of chatClass.myChats">
+          <ion-card (click)="goTo(item.id)">
+            <ion-card-header>
+              <ion-card-subtitle>{{item.createdAt | date: 'short'}}</ion-card-subtitle>
+              <ion-card-title>
+
+                <ng-container *ngIf="item.usernames.length > 2">
+                  Chat em Grupo
+                </ng-container>
+
+                <ng-container *ngIf="item.usernames.length === 2">
+                  <ng-container *ngIf="userClass.myInfo">
+                    <ng-container *ngFor="let names of item.usernames">
+                      <ng-container *ngIf="names !== userClass.myInfo.userName">
+                        {{names}}
+                        <ion-badge class="ion-float-right" color="danger" mode="ios">{{item.newMessage}}</ion-badge>
+                      </ng-container>
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+              </ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ng-container>
+      </ion-list>
+    </ng-container>
+  </ng-container>
+
+
+</ion-content>

@@ -1,0 +1,91 @@
+ion-content {
+  --ion-background-color: var(--ion-color-dark);
+}
+
+.profile {
+  height: 20vh;
+  border-bottom: 1px solid var(--ion-color-tertiary);
+
+  ion-grid, ion-col,ion-row {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    img {
+      width: 13vh;
+      height: 13vh;
+      border-radius: 20%;
+      border: 7px var(--ion-color-tertiary);
+      object-fit: contain;
+      margin-left: 2vh;
+    }
+
+    .texts {
+      margin-left: 2vh;
+      margin-top: 1.5vh;
+      p {
+        color: white;
+      }
+
+      .title {
+        font-family: 'Exo-Black';
+        font-size: 2.5vh;
+      }
+
+      .subtitle {
+        font-family: 'Exo-Thin';
+      }
+    }
+  }
+}
+
+.bio {
+
+  --background: none;
+  background-image: url('../../../../../assets/screens/profile/team-logo.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: inset 0px 0px 277px 3px var(--ion-color-dark);
+
+
+  ion-grid, ion-row,ion-col {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    height: 10vh;
+    border-bottom: 1px solid var(--ion-color-tertiary);
+
+    img {
+      width: 7vh;
+      height: 7vh;
+      object-fit: contain;
+      margin-left: 2vh;
+    }
+
+    .title {
+      color: white;
+    }
+  }
+}
+
+.stats {
+  height: 20vh;
+  border-bottom: 1px solid var(--ion-color-tertiary);
+}
+
+.trophys {
+  height: 20vh;
+  border-bottom: 1px solid var(--ion-color-tertiary);
+}

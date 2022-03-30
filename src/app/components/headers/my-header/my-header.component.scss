@@ -1,0 +1,19 @@
+ion-header,ion-toolbar {
+  --background: linear-gradient(90deg, var(--ion-color-primary-shade) 0%,  var(--ion-color-primary-tint) 70%) !important;
+}
+
+// ion-icon, ion-menu-button, ion-title   {
+//   color: var(--ion-color-light);
+// }
+
+ion-button {
+  ion-badge {
+    position: absolute;
+		top: -0.1rem;
+    right: -.2em;
+		opacity: 0.9;
+    & ~ ion-icon {
+			margin-right: .5rem;
+		}
+  }
+}

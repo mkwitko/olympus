@@ -1,0 +1,26 @@
+<app-my-header [menu]="false" title="Recuperar Senha" url="login"></app-my-header>
+
+<ion-content>
+  <div class="container">
+    <p class="ion-text-center ion-margin-top">
+      <img class="ion-padding logo" src="" alt="">
+    </p>
+    <h2 class="ion-text-center">Esqueci minha senha</h2>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">E-mail</ion-label>
+            <ion-input type="email" [(ngModel)]="recoveryEmail"></ion-input>
+          </ion-item>
+          <ion-button (click)="sendRessetPassword()" class="ion-margin-top" color="primary">
+            Enviar
+          </ion-button>
+          <ion-button (click)="returnLogin()" fill="clear" class="ion-margin-top" style="float: right;">
+            Voltar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

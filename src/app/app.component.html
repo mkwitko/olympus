@@ -1,3 +1,78 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-split-pane [disabled]="menuCtrl.menuBool" contentId="menu-content">
+    <ion-menu class="side-menu-gradient" contentId="menu-content" menuId="menu-content" side="start" type="overlay">
+
+      <ion-content>
+
+        <ng-container *ngIf="userClass.myInfo">
+
+          <!-- Trophys -->
+          <!-- <div class="flex">
+            <ion-button *ngFor="let item of [0,1]" fill="clear">
+              <ion-icon color="warning" slot="icon-only" name="trophy"></ion-icon>
+              <ion-label color="secondary">15</ion-label>
+            </ion-button>
+          </div> -->
+
+          <!-- Photo -->
+          <p class="ion-text-center photo">
+            <img src="../assets/img/default-user.png" alt="">
+          </p>
+
+          <!-- Nickname -->
+          <p *ngIf="userClass.myInfo.userName" class="ion-text-center nome">
+              {{userClass.myInfo.userName}}
+          </p>
+
+          <!-- User menu's -->
+          <ng-container *ngIf="userClass.myInfo.role === 'user'">
+            <ng-container *ngFor="let a of userItens">
+              <ion-item class="ion-margin-top itens" button (click)="changePage(a.path)" routerLinkActive="active">
+                <ion-icon color="tertiary" slot="start" class="ion-margin-start" name={{a.icon}}></ion-icon>
+                <ion-label color="light">{{a.name}}</ion-label>
+
+                <ng-container *ngIf="a.badge === true">
+                  <ng-container *ngIf="userClass.myInfo">
+                    <ng-container *ngIf="userClass.myInfo.friendsRequests">
+                      <ion-badge *ngIf="userClass.myInfo.friendsRequests.length > 0" slot="end" color="danger" mode="ios">
+                        {{userClass.myInfo.friendsRequests.length}}
+                      </ion-badge>
+                    </ng-container>
+
+                  </ng-container>
+                </ng-container>
+              </ion-item>
+
+            </ng-container>
+          </ng-container>
+
+          <!-- Admin menu's -->
+          <ng-container *ngIf="userClass.myInfo.role === 'admin'">
+            <ng-container *ngFor="let a of adminItens">
+              <ion-item class="ion-margin-top itens" button (click)="changePage(a.path)" routerLinkActive="active">
+                <ion-icon slot="start" name={{a.icon}}></ion-icon>
+                <ion-label>{{a.name}}</ion-label>
+
+                <ng-container *ngIf="a.badge === true">
+                  <ng-container *ngIf="userClass.myInfo">
+                    <ion-badge slot="end" color="danger" mode="ios">
+
+                    </ion-badge>
+                  </ng-container>
+                </ng-container>
+              </ion-item>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </ion-content>
+      <ion-footer>
+        <ion-toolbar>
+          <ion-button color="danger" (click)="logout()" expand="block">
+            <ion-label color="light">LOGOUT</ion-label>
+          </ion-button>
+        </ion-toolbar>
+      </ion-footer>
+    </ion-menu>
+    <ion-router-outlet id="menu-content"></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>

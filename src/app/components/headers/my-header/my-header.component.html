@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ng-container *ngIf="menu === true && !url">
+      <ion-buttons slot="start">
+        <ion-menu-button menu="menu-content"></ion-menu-button>
+      </ion-buttons>
+    </ng-container>
+
+    <ng-container *ngIf="url">
+      <ion-buttons slot="start">
+        <ion-back-button text="" [defaultHref]="url"></ion-back-button>
+      </ion-buttons>
+    </ng-container>
+    <ion-title class="ion-text-center">{{title}}</ion-title>
+
+    <ion-buttons *ngIf="sideButtons" slot="end">
+      <ion-button *ngIf="user.myInfo" (click)="goTo('chats-home')">
+        <ng-container>
+          <ion-badge *ngIf="user.newMessages > 0" color="danger" mode="md">
+            {{user.newMessages}}
+          </ion-badge>
+        </ng-container>
+        <ion-icon slot="icon-only" name="chatbubbles-sharp">
+        </ion-icon>
+      </ion-button>
+      <ion-button *ngIf="user.myInfo" (click)="presentModal()">
+        <ng-container *ngIf="user.myInfo.notifications">
+          <ion-badge *ngIf="user.myInfo.notifications.length > 0" color="danger" mode="md">
+            {{user.myInfo.notifications.length}}
+          </ion-badge>
+        </ng-container>
+        <ion-icon slot="icon-only" name="notifications-sharp">
+        </ion-icon>
+      </ion-button>
+      <ion-button (click)="goTo('home')">
+        <ion-icon slot="icon-only" name="home-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

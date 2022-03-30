@@ -1,0 +1,15 @@
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+
+  <ion-fab-button [color]="fab.color">
+    <ion-icon [name]="fab.icon"></ion-icon>
+  </ion-fab-button>
+
+    <ion-fab-list side="start">
+      <ng-container *ngFor="let item of items">
+        <ion-fab-button (click)="goTo(item.route)" [color]="item.color">
+          <ion-icon [name]="item.icon"></ion-icon>
+        </ion-fab-button>
+      </ng-container>
+    </ion-fab-list>
+
+</ion-fab>

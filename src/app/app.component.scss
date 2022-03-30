@@ -1,0 +1,48 @@
+ion-content {
+  // --background: none;
+  // background-image: url('../assets/screens/menu/bg-menu.png');
+  // background-position: bottom right;
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  background-color: var(--ion-color-dark);
+}
+
+ion-menu {
+  ion-content {
+    --ion-background-color: transparent !important;
+  }
+}
+
+img {
+  width: 11vh;
+  height: 11vh;
+  border-radius: 20%;
+  border: 7px var(--ion-color-tertiary);
+  object-fit: contain;
+}
+
+.photo {
+  margin-top: 5vh;
+}
+
+.nome {
+  font-size: 2.5vh;
+  font-family: 'Exo-Black';
+  letter-spacing: 2px;
+  color: var(--ion-color-light);
+  margin-bottom: 5vh;
+}
+
+ion-row {
+  ion-col {
+    margin-right: 1vh;
+  }
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+ion-item{ --border-color: var(--ion-color-tertiary); }

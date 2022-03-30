@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="light"class="ion-text-center ion-margin-top">Notificações</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()" fill="clear" color="tertiary">
+        <ion-icon color="light" name="close-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ng-container *ngFor="let item of user.myInfo.notifications">
+      <ion-row class="outside">
+        <ion-col size="12">
+          <ion-item lines="none">
+            <ion-grid class="inline">
+              <ng-container *ngIf="item.type === user.notificationTypes[0]">
+                <ion-row>
+                  <ion-col size="2">
+                    <ion-avatar>
+                      <img src="../../../assets/img/friend-notification-avatar.png"/>
+                    </ion-avatar>
+                  </ion-col>
+                  <ion-col size="10">
+                    <p class="ion-text-end">{{item.message}}</p>
+                    <ion-button (click)="accept(item.id)" class="ion-float-right ion-margin-top">
+                      <ion-label class="ion-text-center">Aceitar</ion-label>
+                    </ion-button>
+                    <ion-button (click)="reject(item.id)" class="ion-float-right ion-margin-top">
+                      <ion-label class="ion-text-center">Recusar</ion-label>
+                    </ion-button>
+                    <ion-button (click)="goTo('')" class="ion-float-right ion-margin-top">
+                      <ion-label class="ion-text-center">Ver Perfil</ion-label>
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="10" offset="2">
+
+                  </ion-col>
+                </ion-row>
+              </ng-container>
+            </ion-grid>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+
+  </ion-grid>
+</ion-content>
