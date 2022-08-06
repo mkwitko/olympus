@@ -1,3 +1,6 @@
+import { ChatInterface } from './interfaces/chats/chat';
+import { NewMessage } from './interfaces/chats/newMessage';
+import { UserChatService } from 'src/app/services/user-functions/user-chat/user-chat.service';
 import { Chat } from 'src/app/classes/chat/chat';
 import { CrudService } from 'src/app/services/firebase/crud/crud.service';
 import { UserFriendsService } from './services/user-functions/user-friends/user-friends.service';
@@ -15,6 +18,11 @@ import { User } from './classes/user/user';
 export class AppComponent {
 
   public userItens = [
+    {
+      name: 'Home',
+      path: 'home',
+      icon: 'home-sharp'
+    },
     {
       name: 'Perfil',
       path: 'profile-home',
@@ -80,7 +88,8 @@ export class AppComponent {
     private userFriends: UserFriendsService,
     private auth: AuthService,
     private navigation: NavigationService,
-    private crud: CrudService
+    private crud: CrudService,
+    private userChat: UserChatService
   ) {
     this.auth.getAuth().onAuthStateChanged(user => {
       this.menuCtrl.menuBool = !user;
@@ -93,12 +102,17 @@ export class AppComponent {
         });
         this.crud.callGetAll(this.chatClass.collection).subscribe(allChats => {
           this.chatClass.allChats = allChats;
-          this.chatClass.getMyChats();
+          this.chatClass.getMyChats().then(res => {
+            for(const a of res){
+              a.newMessage = this.userChat.getNewMessagesFromChat(a.id);
+            }
+          });
         });
           this.crud.callGet(this.userClass.collection, this.userClass.myInfo, this.auth.id).subscribe(myInfo => {
             this.userClass.myInfo = myInfo;
             this.userFriends.setFriendRequests();
             this.userFriends.setFriends();
+            this.userClass.newMessages = this.userChat.getNewMessages();
         });
       }
     });

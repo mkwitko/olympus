@@ -1,9 +1,67 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>teams-home</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-my-header title="Equipes"></app-my-header>
 
 <ion-content>
-
+  <div class="bg">
+    <div class="team">
+      <div class="center">
+        <img src="../../../../../assets/screens/profile/team-logo.png" alt="">
+      </div>
+    </div>
+    <div class="bg-2">
+      <div class="team-bio">
+        <ion-label class="team-name ion-margin-top">STARDUST ESPORTS</ion-label>
+        <ion-label class="team-description ion-margin-top">Desde 2022, uma equipe de PUBG Mobile Masc. e Fem. atuando no cenário do Brasil, Latam e Europa</ion-label>
+      </div>
+    </div>
+    <div class="trophys-title">
+      <ion-label class="title">Principais Conquistas</ion-label>
+    </div>
+    <div class="trophys">
+      <ion-slides mode="ios" [options]="slideTrophy">
+        <ion-slide *ngFor="let item of [0,1,2,3,4]">
+          <ion-card>
+            <ion-card-content>
+              <img src="../../../../../assets/screens/teams/trophy.png" alt="">
+              <ion-label class="tournament-name">OLYMPUS ARENA JUNE</ion-label>
+            </ion-card-content>
+          </ion-card>
+        </ion-slide>
+      </ion-slides>
+    </div>
+    <div class="roster">
+      <ion-card class="title-card">
+        <ion-card-header class="bg-full">
+          <ion-grid fixed>
+            <ion-row>
+              <ng-container *ngFor="let item of rosters">
+                <ion-col size="4">
+                  <p button (click)="changeSlide(item.id)"[ngClass]="{'active': item.active === true}" class="title ion-text-center">{{item.name}}</p>
+                </ion-col>
+              </ng-container>
+            </ion-row>
+          </ion-grid>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-slides #rosterSlides mode="ios" (ionSlideWillChange)="set()">
+            <ng-container *ngFor="let item of rosters">
+              <ion-slide>
+                <ion-slides class="players-slides" [options]="slideRoster" mode="ios" pager="ios">
+                  <ion-slide *ngFor="let players of item.players">
+                    <ion-card class="players-card">
+                      <ion-card-content>
+                        <img class="pic" [src]="players.pic" alt="">
+                        <ion-label class="nick">{{players.nick}}</ion-label>
+                        <ion-label class="name">{{players.name}}</ion-label>
+                        <ion-label class="role">{{players.role}}</ion-label>
+                      </ion-card-content>
+                    </ion-card>
+                  </ion-slide>
+                </ion-slides>
+              </ion-slide>
+            </ng-container>
+          </ion-slides>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
 </ion-content>

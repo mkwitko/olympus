@@ -6,6 +6,7 @@ import { User } from 'src/app/classes/user/user';
 import { ChatInterface } from 'src/app/interfaces/chats/chat';
 import { CrudService } from 'src/app/services/firebase/crud/crud.service';
 import { NavigationService } from 'src/app/services/navigation/navigation.service';
+import { UserChatService } from 'src/app/services/user-functions/user-chat/user-chat.service';
 
 @Component({
   selector: 'app-chats-details',
@@ -31,7 +32,8 @@ export class ChatsDetailsPage implements OnDestroy {
     public userClass: User,
     private activeRoute: ActivatedRoute,
     private navigation: NavigationService,
-    private crud: CrudService
+    private crud: CrudService,
+    private userChat: UserChatService
   )
   {
     this.routeId = this.activeRoute.snapshot.params.id;
@@ -39,6 +41,7 @@ export class ChatsDetailsPage implements OnDestroy {
 
     this.sub = this.crud.callGet(this.chatClass.collection, this.chat, this.routeId).subscribe(res => {
       this.chat = res;
+      this.userChat.resetNewMessagesFromChat(this.chat.id);
     });
   }
 
@@ -62,7 +65,7 @@ export class ChatsDetailsPage implements OnDestroy {
   }
 
   send(){
-    //this.userChat.sendMessage(this.message, this.userClass.myInfo, this.chat);
+    this.userChat.sendMessage(this.message, this.userClass.myInfo, this.chat);
     this.message = '';
   }
 

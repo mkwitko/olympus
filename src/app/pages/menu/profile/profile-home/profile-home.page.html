@@ -43,16 +43,82 @@
         </ion-col>
         <ion-col size="9">
           <div class="center ion-margin-start ion-margin-end">
-            <p class="title">Profissional atuante pela equipe meu cu</p>
+            <p class="title">PUBG Professional Player for Olympus</p>
           </div>
         </ion-col>
       </ion-row>
     </ion-grid>
   </div>
-  <div class="stats">
-
-  </div>
   <div class="trophys">
-
+    <ion-card>
+      <ion-card-header>
+        <ion-grid fixed>
+          <ion-row>
+            <ng-container *ngFor="let item of trophyItens">
+              <ion-col size="3">
+                <p button (click)="changeSlide(item.id)"[ngClass]="{'active': item.active === true}" class="title ion-text-center">{{item.name}}</p>
+              </ion-col>
+            </ng-container>
+          </ion-row>
+        </ion-grid>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-slides  #trophySlides mode="ios" (ionSlideWillChange)="set()">
+          <ng-container *ngFor="let item of trophyItens">
+            <ion-slide>
+              <ion-card>
+                <ion-card-header>
+                  <ion-card-subtitle class="title">{{item.name}}</ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content>
+                  <ion-grid fixed>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-row>
+                          <ion-col *ngFor="let headers of item.itens">
+                            <img class="header" [src]="headers.img" alt="">
+                            <p class="value">{{headers.value}}</p>
+                          </ion-col>
+                        </ion-row>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-card-content>
+              </ion-card>
+            </ion-slide>
+          </ng-container>
+        </ion-slides>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div class="stats">
+    <ion-grid fixed>
+      <ion-row class="ion-margin-bottom">
+        <ion-col size="4">
+          <h3 class="title">
+            236
+          </h3>
+          <p class="subtitle">
+            Total Played
+          </p>
+        </ion-col>
+        <ion-col size="4">
+          <h3 class="title">
+            236
+          </h3>
+          <p class="subtitle">
+            Total Played
+          </p>
+        </ion-col>
+        <ion-col size="4">
+          <h3 class="title">
+            236
+          </h3>
+          <p class="subtitle">
+            Total Played
+          </p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 </ion-content>

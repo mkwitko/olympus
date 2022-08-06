@@ -6,6 +6,7 @@ import { UserInterface } from 'src/app/interfaces/auth/user';
 import { ChatInterface } from 'src/app/interfaces/chats/chat';
 import { AuthService } from 'src/app/services/firebase/auth/auth.service';
 import { CrudService } from 'src/app/services/firebase/crud/crud.service';
+import { UserChatService } from 'src/app/services/user-functions/user-chat/user-chat.service';
 
 @Injectable()
 export class Chat {
@@ -26,19 +27,20 @@ export class Chat {
     this.collection = this.crud.callCollectionConstructor(this.ref);
   }
 
-  getMyChats(){
-    if(this.allChats){
-      this.myChats = [];
-      if(this.allChats.length > 0){
-        for(const a of this.allChats){
-          if(a.users.includes(this.auth.id)){
-            // get new messages
-            this.myChats.push(a);
+  getMyChats(): Promise<any>{
+    return new Promise((resolve) => {
+      if(this.allChats){
+        this.myChats = [];
+        if(this.allChats.length > 0){
+          for(const a of this.allChats){
+            if(a.users.includes(this.auth.id)){
+              this.myChats.push(a);
+            }
           }
+          resolve(this.myChats);
         }
       }
-      console.log(this.myChats);
-    }
+    });
   }
 
   getChat(chatId: string){

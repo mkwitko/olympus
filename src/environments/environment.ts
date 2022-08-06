@@ -12,7 +12,8 @@ export const environment = {
   messagingSenderId: '992724980648',
   appId: '1:992724980648:web:037ff198f9704ecf5f039d',
   measurementId: 'G-LC6VY8R08K'
-  }
+  },
+  siteUrl: 'https://rubrique.com.br/wp-json/wp/v2/posts'
 };
 
 /*

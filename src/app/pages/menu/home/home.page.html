@@ -1,5 +1,31 @@
 <app-my-header title="Home"></app-my-header>
 
 <ion-content>
+  <div class="container">
+    <div class="banner">
+      <ion-slides mode="ios" pager="ios" [options]="slideBanner">
+        <ion-slide *ngFor="let item of [0,1,2]">
+          <img src="../../../../assets/screens/home/banners/banner-fake.png" alt="">
+        </ion-slide>
+      </ion-slides>
+    </div>
+    <div class="categorys">
+      <ion-slides mode="ios" [options]="slideCategorys">
+        <ion-slide *ngFor="let item of [0,1,2,3,4]">
+          <ion-card>
+            <img src="../../../../assets/screens/home/banners/banner-fake.png" alt="">
+          </ion-card>
+        </ion-slide>
+      </ion-slides>
+    </div>
+    <div class="news">
 
+    </div>
+    <div class="feeds">
+
+    </div>
+    <div class="highlights">
+
+    </div>
+  </div>
 </ion-content>

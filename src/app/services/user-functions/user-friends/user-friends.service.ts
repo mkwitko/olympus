@@ -1,3 +1,4 @@
+import { UserChatService } from 'src/app/services/user-functions/user-chat/user-chat.service';
 import { UserNotificationService } from './../user-notification/user-notification.service';
 import { AuthService } from 'src/app/services/firebase/auth/auth.service';
 import { CrudService } from 'src/app/services/firebase/crud/crud.service';
@@ -5,6 +6,7 @@ import { ScreenService } from 'src/app/services/screen-effects/screen.service';
 import { UserInterface } from 'src/app/interfaces/auth/user';
 import { User } from 'src/app/classes/user/user';
 import { Injectable } from '@angular/core';
+import { Chat } from 'src/app/classes/chat/chat';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +15,8 @@ export class UserFriendsService {
 
   constructor(
     private userClass: User,
+    private chatClass: Chat,
+    private userChat: UserChatService,
     private userNotification: UserNotificationService,
     private screen: ScreenService,
     private crud: CrudService,
@@ -55,8 +59,6 @@ export class UserFriendsService {
 
   setFriendRequests(){
     if(this.userClass.myInfo){
-      console.log(this.userClass.myInfo);
-      console.log(this.userClass.myInfo.friendsRequests);
       if(this.userClass.myInfo.friendsRequests){
         this.userClass.friendsRequests = [];
         if(this.userClass.myInfo.friendsRequests.length > 0){
@@ -106,7 +108,6 @@ export class UserFriendsService {
       to.friendsRequests = [];
     }
 
-    console.log('Find request ', this.findRequest(from, to.id));
     if(this.findRequest(from, to.id)){
       this.screen.presentToast('Você já enviou um pedido de amizade', '', 'warning');
     }
@@ -171,11 +172,23 @@ export class UserFriendsService {
           indexExcludedFriend++;
         }
         this.userClass.myInfo.friends.splice(index, 1);
+        this.chatClass.deleteChat(this.chatClass.getChatWithFriend(id).id);
+        this.userChat.deleteNewMessagesFromChat(this.chatClass.getChatWithFriend(id).id, id);
         this.crud.callUpdate(this.userClass.collection, excludedFriend, excludedFriend.id);
         this.crud.callUpdate(this.userClass.collection, this.userClass.myInfo, this.userClass.myInfo.id);
         this.screen.presentToast('Um minuto de silêncio para o soldado caído', 'F no Chat', 'info');
       }
       index++;
+    }
+  }
+
+  getNewMessagesFromChat(id: string){
+    if(this.userClass.myInfo.newMessages){
+      for(const a of this.userClass.myInfo.newMessages){
+        if(a.chatId === id){
+          return a.quantity;
+        }
+      }
     }
   }
 }

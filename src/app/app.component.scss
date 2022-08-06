@@ -1,11 +1,15 @@
+// ion-content {
+//   --background: none;
+//   background-image: url('../assets/screens/menu/bg-menu.png');
+//   background-position: bottom right;
+//   background-repeat: no-repeat;
+//   background-size: cover;
+// }
+
 ion-content {
-  // --background: none;
-  // background-image: url('../assets/screens/menu/bg-menu.png');
-  // background-position: bottom right;
-  // background-repeat: no-repeat;
-  // background-size: cover;
   background-color: var(--ion-color-dark);
 }
+
 
 ion-menu {
   ion-content {

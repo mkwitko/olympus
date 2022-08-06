@@ -1,4 +1,4 @@
-<app-my-header title="Conversas" [menu]="false" url="friends"></app-my-header>
+<app-my-header title="Conversas" [menu]="false" url="friends-home"></app-my-header>
 
 <ion-content>
 
@@ -20,7 +20,7 @@
                     <ng-container *ngFor="let names of item.usernames">
                       <ng-container *ngIf="names !== userClass.myInfo.userName">
                         {{names}}
-                        <ion-badge class="ion-float-right" color="danger" mode="ios">{{item.newMessage}}</ion-badge>
+                        <ion-badge *ngIf="item.newMessage > 0" class="ion-float-right" color="danger" mode="ios">{{item.newMessage}}</ion-badge>
                       </ng-container>
                     </ng-container>
                   </ng-container>

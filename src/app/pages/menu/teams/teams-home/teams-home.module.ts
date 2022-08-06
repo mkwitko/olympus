@@ -1,3 +1,4 @@
+import { MyHeaderModule } from './../../../../components/headers/my-header/my-header.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +14,8 @@ import { TeamsHomePage } from './teams-home.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    TeamsHomePageRoutingModule
+    TeamsHomePageRoutingModule,
+    MyHeaderModule
   ],
   declarations: [TeamsHomePage]
 })
